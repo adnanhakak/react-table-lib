@@ -1,0 +1,46 @@
+//////////////////Steps to impliment table//////////////////
+s1: get data to impliment
+s2: define columns in colum.js file
+s3: use data and column defined to create a table instance using react-table
+s4: define basic table structure using html
+s5: use table instance created in s3 to bring life to html created in step 4
+s6: include desired css
+
+//////////////// footer implimentation//////////////////
+in column.js add footer properties
+destructure footergroups from usetable
+add jsx in tfoot
+
+/////////////group header with reacttable///////////////////
+make gropedcolumns variable in columns js
+import groupedcolumns in basictable and pass in useMemo
+
+
+//////////////Implement sorting//////////////////////////
+import useSortByHook and pass as 2nd arg to useTable hook
+pass column.getSortByToggleProps() to getheaderprops() in th and then use icons or what ever
+note for formatting date:
+1.to format date npm i date-fns and then create property cell which controls what isrendered in ui
+
+
+////////////////////global filtering//////////////////////////////
+.create globalfilter.js file
+.import useGlobalFilter hook and pass as arg to usetable hook
+.destructure state and setglobal filter from use table
+.destructure global filter from state
+.add global filter component in jsx which we created already and pass filter
+ and set filter as props which are set to globalfilter and set global filter respectivily
+
+
+//////////////////////Column Filtering///////////////////////
+create columnfilter.js
+which acceptts props.column as prop and destructure filterValue,setFilter from column
+import useFilters from react table and pass to usetable before use global
+add coolumn filter component to every column 
+ <div>{column.canFilter ? column.render('Filter') : null}</div>
+ here what is filter? add Filter:ColumnFilter property to every column is columnjs file
+ torender the component for each column
+
+ note:
+ .if we dont want column filter for any column eg id set disableFilters:true in columnjs
+ .useAsyncdebounce hook when filtering
