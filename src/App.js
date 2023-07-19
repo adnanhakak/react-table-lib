@@ -12,7 +12,6 @@ function App() {
    {/* <SortingTable/> */}
     {/* <FilteringTable/>  */}
    <AllTableF/> 
-
     </div>
   );
 }

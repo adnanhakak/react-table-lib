@@ -44,3 +44,6 @@ add coolumn filter component to every column
  note:
  .if we dont want column filter for any column eg id set disableFilters:true in columnjs
  .useAsyncdebounce hook when filtering
+
+
+//////////////////////pagination////////////////////////

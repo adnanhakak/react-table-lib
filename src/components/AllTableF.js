@@ -61,7 +61,15 @@ export const AllTableF = () => {
                              return( 
                                 <td{...cell.getCellProps()}>
                                 {cell.render("Cell") }
-                                
+                                {cell.column.Header === "Email" && (
+                                    <div style={{ fontSize: "12px", color: "gray" }} onClick={
+                                        ()=>{
+                                            alert("calling "+cell.row.values.phone)
+                                        }
+                                    }>
+                                      {cell.row.values.phone}
+                                    </div>
+                                  )}
                                 </td>
                                 )
                             })}
