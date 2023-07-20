@@ -1,13 +1,17 @@
 import React, { useMemo } from 'react'
-import { useTable ,useGlobalFilter,useSortBy ,useFilters} from 'react-table'
+import { useTable,useColumnOrder } from 'react-table'
 import { COLUMNS,GROUPED_COLUMNS } from './Columns'
 import MOCK_DATA from './MOCK_DATA.json'
 import "./table.css"
-import GlobalFilter from './GlobalFilter'
 
-export const AllTableF = () => {
+
+export const ColumnOrder = () => {
+    const changeOrder = () => {
+        setColumnOrder(['id', 'first_name', 'last_name', 'email', 'age', 'phone'])
+    }
+  
     const columns = useMemo(() => {
-        return COLUMNS
+        return GROUPED_COLUMNS
     }, [])
     const data = useMemo(() => {
         return MOCK_DATA
@@ -16,14 +20,13 @@ export const AllTableF = () => {
         columns: columns,
         data: data
         //noneed to call functions as useMemo returns value directly
-    },useFilters,useGlobalFilter,useSortBy) //this is s3 creating table instance now for s4 create html in jsx
+    },useColumnOrder) //this is s3 creating table instance now for s4 create html in jsx
 
     //s5 work with table instances
-    const {getTableProps,state,setGlobalFilter,footerGroups,getTableBodyProps,headerGroups,rows,prepareRow}=tableInstance
-    const{globalFilter}=state
+    const {getTableProps,footerGroups,setColumnOrder,getTableBodyProps,headerGroups,rows,prepareRow}=tableInstance
     return (
         <>
-        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
+        <button onClick={changeOrder}>Change column order</button>
         <table {...getTableProps()}>
 
             <thead>
@@ -31,19 +34,9 @@ export const AllTableF = () => {
                   return ( 
                   <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column)=>{
-                          return(
-                            <th{...column.getHeaderProps(column.getSortByToggleProps())}>
-                            {column.render("Header")}
-                            <span>
-                            {column.isSorted
-                              ? column.isSortedDesc
-                                ? ' 🔽'
-                                : ' 🔼'
-                              : ''}
-                          </span>
-                            <div>{column.canFilter ? column.render('Filter') : null}</div>
-
-                            </th>
+                        return(
+                            <th{...column.getHeaderProps()}>
+                            {column.render("Header")}</th>
                         )
                     })}
                     
@@ -58,18 +51,9 @@ export const AllTableF = () => {
                          <tr {...row.getRowProps()}>
                             {row.cells.map((cell)=>{
                              return( 
-                                <td{...cell.getCellProps()} onClick={()=>console.log(cell.row.values)}>
+                                <td{...cell.getCellProps()}>
                                 {cell.render("Cell") }
-                                {cell.column.Header === "Email" && (
-                                    <div style={{ fontSize: "12px", color: "gray" }} onClick={
-                                        ()=>{
-                                            alert("calling "+cell.row.values.phone)
-                                            console.log(cell.row.values)
-                                        }
-                                    }>
-                                      {cell.row.values.phone}
-                                    </div>
-                                  )}
+                                
                                 </td>
                                 )
                             })}

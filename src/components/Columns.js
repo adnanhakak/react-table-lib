@@ -1,64 +1,65 @@
 // header=> what to display in table header
 // accessor=> what name of property is in data
 // this is S2 defining colums for our table
-import {format} from "date-fns"
+import { format } from "date-fns"
 import ColumnFilter from "./ColumnFilter"
 export const COLUMNS = [
+
     {
         Header: 'Id',
         Footer: 'Id',
         accessor: 'id',
         // disableFilters: true,
         sticky: 'left',
-        Filter:ColumnFilter
-        ,disableFilters:true
+        Filter: ColumnFilter,
+        disableFilters: true
     },
     {
         Header: 'First Name',
         Footer: 'First Name',
         accessor: 'first_name',
         sticky: 'left',
-        Filter:ColumnFilter
+        Filter: ColumnFilter
     },
     {
         Header: 'Last Name',
         Footer: 'Last Name',
         accessor: 'last_name',
         sticky: 'left',
-        Filter:ColumnFilter
+        Filter: ColumnFilter
     },
     {
         Header: 'Date of Birth',
         Footer: 'Date of Birth',
         accessor: 'date_of_birth',
-          Cell: ({ value }) => {
+        Cell: ({ value }) => {
             return format(new Date(value), 'dd/MM/yyyy')
-          },
-          Filter:ColumnFilter
+        },
+        Filter: ColumnFilter
     },
     {
         Header: 'Country',
         Footer: 'Country',
         accessor: 'country',
-        Filter:ColumnFilter
+        Filter: ColumnFilter
     },
     {
         Header: 'Phone',
         Footer: 'Phone',
         accessor: 'phone',
-        Filter:ColumnFilter
+        Filter: ColumnFilter
     },
     {
         Header: 'Email',
         Footer: 'Email',
         accessor: 'email',
-        Filter:ColumnFilter
+        Filter: ColumnFilter
     },
     {
         Header: 'Age',
         Footer: 'Age',
         accessor: 'age',
-        Filter:ColumnFilter
+        Filter: ColumnFilter
     },
 ]
 
@@ -86,10 +87,10 @@ export const GROUPED_COLUMNS = [
 
             },
         ] //as we wnat to group first and last name
-    },{
+    }, {
         Header: 'Info',
         Footer: 'Info',
-        columns:[
+        columns: [
             {
                 Header: 'Phone',
                 Footer: 'Phone',

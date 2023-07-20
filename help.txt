@@ -1,4 +1,4 @@
-//////////////////Steps to impliment table//////////////////
+//////////////////Steps to impliment basic table//////////////////
 s1: get data to impliment
 s2: define columns in colum.js file
 s3: use data and column defined to create a table instance using react-table
@@ -11,7 +11,7 @@ in column.js add footer properties
 destructure footergroups from usetable
 add jsx in tfoot
 
-/////////////group header with reacttable///////////////////
+/////////////group header with react-table///////////////////
 make gropedcolumns variable in columns js
 import groupedcolumns in basictable and pass in useMemo
 
@@ -47,3 +47,51 @@ add coolumn filter component to every column
 
 
 //////////////////////pagination////////////////////////
+1.impliment basic pagination
+import use pagination from react-table and pass as 2nd arg to use table hook
+instead of rows use page in jsx
+destructure nextPage and previousPage from useTable
+use these 2 functions on button click to navigate
+destructure canNextPage and CanPreviousPage and set to button's disabled prop
+.on which page we r on=>
+destructure page options and state and extract state.pageIndex for current page number
+and pageOptions.length for total number of pages 
+
+2.goto page
+destructure gotoPage and pageCount from usetable
+create gotoPage(0) button 
+and gotoPage(pageCount-1)
+to jump to a certain page use input and pass its value to gotoPage function
+
+3.define pagination page size
+destructure setPageSize from use Table and use state.page size
+crate dropdown and select as many options 
+
+///////////////////////////////Selecting rows///////////////////////////////
+get checkbox from react-table
+import useRowSelect and pass to usetable
+destructure selectedflatrows from usetable which gives us selected rows
+use arrow function after userowselect
+add pretag and relevant code in jsx
+note:
+instead of doing all this we can do it by knowing on click
+ which item was pressed and getting data as done in <AllTableF/> but for single item
+
+
+ /////////////////////////////////Column Ordering//////////////////////////
+ import use column order hook adn ppass as 2nd arg to use table
+ destructure setColumnOrder form table instance
+ create button and call changeOrder on click base on accessor propert in column.js
+
+
+ ///////////////////////////////Show And Hide Columns////////////////////////
+ destructure allColumns and getToggleHideAllColumnSprops
+ import checkbox we already created and use in div and pass getToggleHideAllColumnSprops
+ as props to checkbox
+
+ ///////////////////////////////////sticky tables/////////////////////////////////
+ install react-table-sticky (npm i react-table-sticky) and (npm i styled-components)
+ use styled component by creating new component tableStyle.js
+ import useblackout and usestickky and pass as arg to usetable
+ import styles and replace full jsx from documentaion 
+ know which columns are sticky by using sticky property in columns.js
